@@ -108,54 +108,56 @@
   </dependencies>
 
   <build>
-    <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
 
-      <plugin>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>create-keeptime-zip</id>
-            <phase>package</phase>
-            <goals>
-              <goal>single</goal>
-            </goals>
-            <configuration>
-              <descriptors>
-                <descriptor>./assembly.xml</descriptor>
-              </descriptors>
-              <finalName>keeptime-${project.version}</finalName>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
+        <plugin>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>create-keeptime-zip</id>
+              <phase>package</phase>
+              <goals>
+                <goal>single</goal>
+              </goals>
+              <configuration>
+                <descriptors>
+                  <descriptor>./assembly.xml</descriptor>
+                </descriptors>
+                <finalName>keeptime-${project.version}</finalName>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
 
-      <!-- see https://jeremylong.github.io/DependencyCheck/dependency-check-maven/ -->
-      <!-- https://mvnrepository.com/artifact/org.owasp/dependency-check-maven -->
-      <plugin>
-        <groupId>org.owasp</groupId>
-        <artifactId>dependency-check-maven</artifactId>
-        <version>${maven-dependency-check.version}</version>
-        <configuration>
-          <format>${maven-dependency-check.format}</format>
-          <failOnError>${maven-dependency-check.failOnError}</failOnError>
-          <failBuildOnCVSS>${maven-dependency-check.failBuildOnCVSS}</failBuildOnCVSS>
-          <outputDirectory>target/site</outputDirectory>
-          <!--suppressionFile>${project.basedir}/dependency-check-report_suppressions.xml</suppressionFile-->
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>update-only</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
+        <!-- see https://jeremylong.github.io/DependencyCheck/dependency-check-maven/ -->
+        <!-- https://mvnrepository.com/artifact/org.owasp/dependency-check-maven -->
+        <plugin>
+          <groupId>org.owasp</groupId>
+          <artifactId>dependency-check-maven</artifactId>
+          <version>${maven-dependency-check.version}</version>
+          <configuration>
+            <format>${maven-dependency-check.format}</format>
+            <failOnError>${maven-dependency-check.failOnError}</failOnError>
+            <failBuildOnCVSS>${maven-dependency-check.failBuildOnCVSS}</failBuildOnCVSS>
+            <outputDirectory>target/site</outputDirectory>
+            <!--suppressionFile>${project.basedir}/dependency-check-report_suppressions.xml</suppressionFile -->
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>update-only</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
 
-    </plugins>
+      </plugins>
+    </pluginManagement>
   </build>
 
   <reporting>
@@ -184,7 +186,7 @@
           <failOnError>${maven-dependency-check.failOnError}</failOnError>
           <failBuildOnCVSS>${maven-dependency-check.failBuildOnCVSS}</failBuildOnCVSS>
           <outputDirectory>target/site</outputDirectory>
-          <!--suppressionFile>${project.basedir}/dependency-check-report_suppressions.xml</suppressionFile-->
+          <!--suppressionFile>${project.basedir}/dependency-check-report_suppressions.xml</suppressionFile -->
         </configuration>
       </plugin>
     </plugins>
