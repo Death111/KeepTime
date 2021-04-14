@@ -16,26 +16,31 @@
 
 package de.doubleslash.keeptime.common;
 
-import static org.junit.Assert.assertThat;
-
 import java.time.LocalDateTime;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import org.hamcrest.Matchers;
-import org.junit.Ignore;
 import org.junit.Test;
 
-@Ignore
+
 public class DateFormatterTest {
 
    @Test
-   public void zeroSecondsBetweenTest() {
+   public void durationShouldBePositiveWhenStartBeforeEndDate() {
       final LocalDateTime startDate = LocalDateTime.now();
-      final LocalDateTime endDate = startDate.plusNanos(10000);
+      final LocalDateTime endDate = startDate.plusSeconds(10);
 
       final long secondsBewtween = DateFormatter.getSecondsBewtween(startDate, endDate);
-      assertThat(secondsBewtween, Matchers.is(0l));
-
-      final long secondsBewtweenSwitched = DateFormatter.getSecondsBewtween(endDate, startDate);
-      assertThat(secondsBewtweenSwitched, Matchers.is(0l)); // why??
+      assertThat(secondsBewtween, Matchers.is(10l));
+   }
+   
+   @Test
+   public void durationShouldBePositiveWhenEndBeforeStartDate() {
+	   final LocalDateTime startDate = LocalDateTime.now();
+	   final LocalDateTime endDate = startDate.plusSeconds(10);
+	   
+	   
+	   final long secondsBewtweenSwitched = DateFormatter.getSecondsBewtween(endDate, startDate);
+	   assertThat(secondsBewtweenSwitched, Matchers.is(10l));
    }
 }

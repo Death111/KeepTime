@@ -94,7 +94,7 @@ public class Controller {
       currentWork.setEndTime(workEnd);
 
       final String time = DateFormatter
-            .secondsToHHMMSS(Duration.between(currentWork.getStartTime(), currentWork.getEndTime()).getSeconds());
+            .secondsToHHMMSS(DateFormatter.getSecondsBewtween(currentWork.getStartTime(), currentWork.getEndTime()));
 
       LOG.info("Saving Work from '{}' to '{}' ({}) on project '{}' with notes '{}'", currentWork.getStartTime(),
             currentWork.getEndTime(), time, currentWork.getProject().getName(), currentWork.getNotes());
@@ -350,7 +350,7 @@ public class Controller {
       long seconds = 0;
 
       for (final Work w : workItems) {
-         seconds += Duration.between(w.getStartTime(), w.getEndTime()).getSeconds();
+         seconds += DateFormatter.getSecondsBewtween(w.getStartTime(), w.getEndTime());
       }
 
       return seconds;

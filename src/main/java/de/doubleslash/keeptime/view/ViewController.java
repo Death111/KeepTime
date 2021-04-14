@@ -291,9 +291,7 @@ public class ViewController {
          final LocalDateTime now = LocalDateTime.now();
          model.activeWorkItem.get().setEndTime(now); // FIXME not good to change model
 
-         final long currentWorkSeconds = Duration
-               .between(model.activeWorkItem.get().getStartTime(), model.activeWorkItem.get().getEndTime())
-               .getSeconds();
+         final long currentWorkSeconds = DateFormatter.getSecondsBewtween(model.activeWorkItem.get().getStartTime(), model.activeWorkItem.get().getEndTime());
          activeWorkSecondsProperty.set(currentWorkSeconds);
          final long todayWorkingSeconds = controller.calcTodaysWorkSeconds();
          final long todaySeconds = controller.calcTodaysSeconds();

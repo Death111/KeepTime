@@ -19,6 +19,7 @@ package de.doubleslash.keeptime.view;
 import java.time.Duration;
 import java.util.List;
 
+import de.doubleslash.keeptime.common.DateFormatter;
 import de.doubleslash.keeptime.model.Work;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -40,7 +41,7 @@ public class ColorTimeLine {
       gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
       double currentX = 0;
       for (final Work w : workItems) {
-         final long workedSeconds = Duration.between(w.getStartTime(), w.getEndTime()).getSeconds();
+         final long workedSeconds = DateFormatter.getSecondsBewtween(w.getStartTime(), w.getEndTime());
          final double width = (double) workedSeconds / seconds * canvas.getWidth();
          final Color fill = w.getProject().getColor();
 
